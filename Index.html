@@ -132,23 +132,14 @@
     appId: "1:573155422606:web:680816968e10741f94b4df",
     measurementId: "G-63H1SYV8LN"
   };
-
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-</script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-  const firebaseConfig = {
-    // your config here
-  };
-
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 </script>
 </body>
 </html>
+
 
 
