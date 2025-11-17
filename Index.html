@@ -114,5 +114,29 @@
   
 
   <script src="script.js" defer></script>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDGdMNK8pkUB8EHurrm1Ih7UGDSZxs8quI",
+    authDomain: "gamefactoryalpha-bc329.firebaseapp.com",
+    projectId: "gamefactoryalpha-bc329",
+    storageBucket: "gamefactoryalpha-bc329.firebasestorage.app",
+    messagingSenderId: "573155422606",
+    appId: "1:573155422606:web:680816968e10741f94b4df",
+    measurementId: "G-63H1SYV8LN"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
+
