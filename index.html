@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  <style>
+    .orthoButton{
+      width: 120px;
+      height: 50px;
+      margin-top: 10px;
+    }
+    .undo{
+      width: 70px;
+      height: 50px;
+      margin-top: 20px;
+    }
+    .resetButton{
+      background-color: rgb(219, 97, 97);
+      width: 70px;
+      height: 50px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+    .count{
+      width: 50px;
+      height: 50px;
+      font-size: xx-large;
+    }
+    .columnZone{
+      width: 50px;
+      height: 250px;
+      z-index: 60;
+    }
+    .river{
+      margin-top: 30px;
+      display: flex;
+      height:450px;
+      width:250px;
+      z-index: 50;
+    }
+    .win{
+      width: 200px;
+      height: 200px;
+      font-size: 50vw;
+      position: fixed;
+      z-index: 100;
+   
+    }
+    .width{
+      width: 50px;
+      
+    }
+    .height{
+      width: 50px;
+    }
+    .tile {
+      width: 50px;
+      height: 50px;
+      background: lightblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      position: relative;
+      z-index: 70;
+    }
+  </style>
+</head>
+
+<body>
+  <div id = "count" class = "count"></div>
+  <div id="river" class="river"></div>
+  <button id ="undo" class = "undo" >UNDO</button>
+  <button id ="resetButton" class = "resetButton" >RESET</button>
+  <label>
+  <input type="checkbox" id="orthoButton">Orthogonal
+  </label>
+  <input type="text" id="width" placeholder="width">
+  <input type="text" id="height" placeholder="height">
+  <div id="board" class="board"></div>
+  <script src="BridgeBuilderEngine.js"></script>
+  
+  
+</body>
+</html>
