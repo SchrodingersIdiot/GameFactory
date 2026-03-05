@@ -122,7 +122,6 @@ function handleCol(event){
         james.style.color = "white"
         james.style.boxSizing = "border-box"
         james.style.borderStyle = "dotted"
-        
         if(innit){
             james.style.backgroundColor = "darkgray"
         }
@@ -167,6 +166,7 @@ function handleUndo(){
     if(primeList.includes(parseInt(psTile.textContent))){
         psTile.style.backgroundColor = "gray"
         psTile.style.color = "white"
+        psTile.style.borderStyle = "hidden"
         return
     }
     count--
@@ -195,23 +195,25 @@ function handleReset(){
 function isLegal(count2, x, y){
     const x1 = xList.at(-1)
     const y1 = yList.at(-1)
-    gorf = isAdjacent(x,y,x1,y1)
+    const psTile = document.querySelector(`[data-x="${x}"][data-y="${y}"]`)
+    const gorf = isAdjacent(x,y,x1,y1)
     if(primeList.includes(columns[x][y]) ){
         console.log("isPrime")
         if(firstMove){
             console.log("isFirstMove")
-            gorf = isAdjacent(x,y,"fart","fart")
+            jingle = isAdjacent(x,y,"fart","fart")
         }
         if(fullMoveList.length !== 0){
             const x = fullMoveList.at(-1)[0]
             const y = fullMoveList.at(-1)[1]
             console.log(`fixing tile: ${x}, ${y}`)
-            const psTile = document.querySelector(`[data-x="${x}"][data-y="${y}"]`)
             console.log(x, y);
             console.log(psTile);
             psTile.style.borderStyle = "hidden"
         }
-        if(gorf){
+        if(jingle){
+            psTile.style.borderStyle = "hidden"
+            firstMove = false
             console.log("gorf")
             xList.push(x)
             yList.push(y)
