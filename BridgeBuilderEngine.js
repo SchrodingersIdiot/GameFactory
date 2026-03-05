@@ -197,11 +197,12 @@ function isLegal(count2, x, y){
     const y1 = yList.at(-1)
     gorf = isAdjacent(x,y,x1,y1)
     if(primeList.includes(columns[x][y]) ){
+        console.log("isPrime")
         if(firstMove){
+            console.log("isFirstMove")
             gorf = isAdjacent(x,y,"fart","fart")
         }
         if(fullMoveList.length !== 0){
-           
             const x = fullMoveList.at(-1)[0]
             const y = fullMoveList.at(-1)[1]
             console.log(`fixing tile: ${x}, ${y}`)
@@ -211,6 +212,7 @@ function isLegal(count2, x, y){
             psTile.style.borderStyle = "hidden"
         }
         if(gorf){
+            console.log("gorf")
             xList.push(x)
             yList.push(y)
             fullMoveList.push(x+y)
@@ -257,8 +259,10 @@ function isLegal(count2, x, y){
     }
 }
 function isAdjacent(x, y, x1, y1){
+    console.log(x)
     if(firstMove && x1 == "fart"){
-        if(x === 0){
+        if(x == 0){
+            console.log("yessir")
             return true
         }
         return false
