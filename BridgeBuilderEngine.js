@@ -120,6 +120,9 @@ function handleCol(event){
         james = event.target
         james.style.backgroundColor = "brown"
         james.style.color = "white"
+        james.style.boxSizing = "border-box"
+        james.style.borderStyle = "dotted"
+        
         if(innit){
             james.style.backgroundColor = "darkgray"
         }
@@ -139,15 +142,25 @@ function handleCol(event){
 function handleUndo(){
     const x = parseInt(xList.at(-1))
     const y = parseInt(yList.at(-1))
-    console.log(`Undoing tile at: ${x}, ${y}`);
+    console.log(`Undoing tile at: ${x}, ${y}`)
     const psTile = document.querySelector(`[data-x="${x}"][data-y="${y}"]`)
     console.log(x, y);
     console.log(psTile);
     psTile.style.backgroundColor = "lightblue"
     psTile.style.color = "black"
+    psTile.style.borderStyle = "hidden"
     xList.pop()
     yList.pop()
     fullMoveList.pop()
+    if(fullMoveList.length !== 0){
+            const x = fullMoveList.at(-1)[0]
+            const y = fullMoveList.at(-1)[1]
+            console.log(`farting tile: ${x}, ${y}`)
+            const psTile = document.querySelector(`[data-x="${x}"][data-y="${y}"]`)
+            console.log(x, y);
+            console.log(psTile);
+            psTile.style.borderStyle = "dotted"
+        }
     if(fullMoveList.length == 0){
         firstMove = true
     }
@@ -181,6 +194,15 @@ function handleReset(){
 }
 function isLegal(count2, x, y){
     if(primeList.includes(columns[x][y])){
+        if(fullMoveList.length !== 0){
+            const x = fullMoveList.at(-1)[0]
+            const y = fullMoveList.at(-1)[1]
+            console.log(`fixing tile: ${x}, ${y}`)
+            const psTile = document.querySelector(`[data-x="${x}"][data-y="${y}"]`)
+            console.log(x, y);
+            console.log(psTile);
+            psTile.style.borderStyle = "hidden"
+        }
         xList.push(x)
         yList.push(y)
         fullMoveList.push(x+y)
@@ -207,6 +229,15 @@ function isLegal(count2, x, y){
         }
         countVisual.textContent = count 
         console.log(count)
+        if(fullMoveList.length !== 0){
+            const x = fullMoveList.at(-1)[0]
+            const y = fullMoveList.at(-1)[1]
+            console.log(`fixing tile: ${x}, ${y}`)
+            const psTile = document.querySelector(`[data-x="${x}"][data-y="${y}"]`)
+            console.log(x, y);
+            console.log(psTile);
+            psTile.style.borderStyle = "hidden"
+        }
         xList.push(x)
         yList.push(y)
         fullMoveList.push(x+y)
