@@ -67,7 +67,7 @@ for(let q=0;q<9;q++){
 }
 
 
-hyperMapMaker(river)
+hyperMapMaker(columns)
 
 const undoButton = document.getElementById("undo")
 undoButton.addEventListener("click", handleUndo)
@@ -193,8 +193,15 @@ function handleReset(){
     countVisual.textContent = count 
 }
 function isLegal(count2, x, y){
-    if(primeList.includes(columns[x][y])){
+    const x1 = xList.at(-1)
+    const y1 = yList.at(-1)
+    gorf = isAdjacent(x,y,x1,y1)
+    if(primeList.includes(columns[x][y]) ){
+        if(firstMove){
+            gorf = isAdjacent(x,y,"fart","fart")
+        }
         if(fullMoveList.length !== 0){
+           
             const x = fullMoveList.at(-1)[0]
             const y = fullMoveList.at(-1)[1]
             console.log(`fixing tile: ${x}, ${y}`)
@@ -203,10 +210,13 @@ function isLegal(count2, x, y){
             console.log(psTile);
             psTile.style.borderStyle = "hidden"
         }
-        xList.push(x)
-        yList.push(y)
-        fullMoveList.push(x+y)
-        return true 
+        if(gorf){
+            xList.push(x)
+            yList.push(y)
+            fullMoveList.push(x+y)
+            return true 
+         }
+        
     }
     if(firstMove && x == 0){
         count++
@@ -218,9 +228,7 @@ function isLegal(count2, x, y){
         firstMove = false
         return true
     }
-    const x1 = xList.at(-1)
-    const y1 = yList.at(-1)
-    gorf = isAdjacent(x,y,x1,y1)
+   
     console.log(columns[x][y])
     if(columns[x][y]%count2 === 0 && gorf){
         count++
@@ -249,6 +257,12 @@ function isLegal(count2, x, y){
     }
 }
 function isAdjacent(x, y, x1, y1){
+    if(firstMove && x1 == "fart"){
+        if(x === 0){
+            return true
+        }
+        return false
+    }
     if((Math.abs(x-x1) <= 1) && (Math.abs(y-y1) <= 1)){
         if(!(x === x1 && y === y1)){
              if(orthoButton.checked){
@@ -269,7 +283,7 @@ function hyperMapMaker(river){
         for(p=0; p<riverLength; p++){
             console.log(i)
             console.log(p)
-            let pick = river[p][i]
+            let pick = columns[p][i]
             if(primeList.includes(pick)){
                 for(u=0;u<9;u++){
                     hyperPane[u][i][p] = 1
@@ -393,7 +407,7 @@ function checkShit(hyperPane, currentLocation){
     columns[y][x] = goop 
     let from = comingFrom(hyperPane, x, y, z)
     let to = goingTo(hyperPane, x, y, z, from)
-
+    const whereIAm =  document.querySelector(`[data-x="${x}"][data-y="${y}"]`)
     console.log(to[0])
     if(x == riverLength){
         console.log("whazt")
@@ -408,9 +422,11 @@ function checkShit(hyperPane, currentLocation){
         }
         let newLocation = to[1][0] + to[1][1] + next
         console.log(newLocation)
+        whereIAm.style.backgroundColor = "red"
         checkShit(hyperPane, newLocation)
     }
     else{
+        whereIAm.style.backgroundColor = "red"
         hyperPane[z][x][y] = 0
         checkShit(hyperPane, from[1]) ///up z
     }
@@ -438,6 +454,9 @@ function pathFinder(hyperPane){
             }
         }
     }
+
+
+
 
 function rerollPrime(number){
    if(primeList.includes(number)){
