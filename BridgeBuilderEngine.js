@@ -170,6 +170,9 @@ function handleUndo(){
         return
     }
     count--
+    if(count == 0){
+        count = 9
+    }
     countVisual.textContent = count 
 }
 function handleReset(){
